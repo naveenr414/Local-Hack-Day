@@ -3,6 +3,7 @@
 {% block header %}
   <h1>{% block title %} {{ name }} {% endblock %}</h1>
   <a class="action" href="{{ url_for('follow') }}">Follow</a>
+	<a class="action" href="{{ url_for('review',clubname=name) }}"> Add a review </a> 
 {% endblock %}
 
 {% block content %}

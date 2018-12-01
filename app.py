@@ -35,7 +35,7 @@ def club(clubname):
 def editclub():
     return editApp.editclub()
 
-@app.route('/clubs/<clubname>/review',methods=['GET','POST'])
+@app.route('/clubs/review/<clubname>',methods=['GET','POST'])
 def review(clubname):
     return reviewApp.review(clubname)
 
