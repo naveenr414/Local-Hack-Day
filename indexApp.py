@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, redirect, url_for
 import sqlite3
 
 def index():
@@ -22,11 +22,13 @@ def index():
             posts = c.execute('SELECT * FROM posts WHERE username = ?',(user,)).fetchall()
             # posts = dict(posts)
 
-            allPosts.append(posts)
-            print(posts,user)
-        
-        print(ret)
+            for post in posts:
+                allPosts.append(post)
+
         print(allPosts)
+
+        allPosts = sorted(allPosts,key=lambda x:x[2],reverse=True)
+        
         return render_template('blog/index.html', allPosts = allPosts,username=session['username'],isClub=session['isClub'])
 
     else:
