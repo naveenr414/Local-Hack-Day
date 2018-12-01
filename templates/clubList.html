@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Clubs{% endblock %}</h1>
+  {# <a class="action" href="{{ url_for('write') }}">Create Club</a> #}
+{% endblock %}
+
+{% block content %}
+
+  {% for club in clubInfo %}
+  	<ul>
+  		<a class="club" href="{{ url_for('club',clubname= club) }}">{{ club }}</a>
+  	</ul>
+      
+  {% endfor %}
+{% endblock %}

@@ -18,7 +18,7 @@ def club(clubname):
             l["time"] = i[2]
             l["review"] = i[1]
             d.append(l)
-        return render_template("club.html",description=description,followers=followers,reviews=d,username=sessions["username"])
+        return render_template("club.html",description=description,followers=followers,reviews=d,username=session["username"])
     else:
         return redirect(url_for("index"))
 
@@ -30,5 +30,5 @@ def clubList():
 
     print(clubInfo)
 
-    return ""
-    #return render_template("clubList.html",clubInfo=clubInfo,username=username)
+    # return ""
+    return render_template("clubList.html",clubInfo=clubInfo,username=session['username'])
