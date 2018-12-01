@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template, redirect, url_for
+from flask import Flask, session, render_template
 import sqlite3
 
 def index():
@@ -27,7 +27,7 @@ def index():
         
         print(ret)
         print(allPosts)
-        return render_template('blog/index.html', allPosts = allPosts,username=session['username'])
+        return render_template('blog/index.html', allPosts = allPosts,username=session['username'],isClub=session['isClub'])
 
     else:
         return redirect(url_for('login'))

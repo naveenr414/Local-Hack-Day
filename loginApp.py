@@ -34,9 +34,7 @@ def login():
             # store the user id in a new session and return to the index
             session.clear()
             session['username'] = d['username']
-            g.username = d['username']
-            g.isClub = user[3] == "True"
-            print([session['username']])
+            session['isClub'] = user[3] == "True"
             return redirect(url_for('index'))
 
         return render_template("login.html",error=error)

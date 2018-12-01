@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for
+from flask import Flask, session, redirect, url_for, g
 import loginApp, indexApp, writeApp, followApp, clubApp, editApp, reviewApp, editPost
 
 app = Flask(__name__)
@@ -17,7 +17,6 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    g.username=""
     return redirect(url_for('index'))
 
 @app.route('/write',methods=['GET', 'POST'])
