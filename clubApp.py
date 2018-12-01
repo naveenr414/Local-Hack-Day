@@ -18,6 +18,17 @@ def club(clubname):
             l["time"] = i[2]
             l["review"] = i[1]
             d.append(l)
-        return render_template("club.html",description=description,followers=followers,reviews=d)
+        return render_template("club.html",description=description,followers=followers,reviews=d,username=sessions["username"])
     else:
         return redirect(url_for("index"))
+
+def clubList():
+    con = sqlite3.connect("database.db")
+    c = con.cursor()
+    clubInfo = c.execute("SELECT * FROM clubs").fetchall()
+    clubInfo = [i[0] for i in clubInfo]
+
+    print(clubInfo)
+
+    return ""
+    #return render_template("clubList.html",clubInfo=clubInfo,username=username)

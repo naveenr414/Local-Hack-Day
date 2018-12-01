@@ -47,4 +47,9 @@ def delete(postnum):
 def update(postnum):
     return editPost.update(postnum)
 
+@app.route('/clubs')
+def clubList():
+    return clubApp.clubList()
+    
+
 app.run(host='127.0.5.1', port= 8081)
