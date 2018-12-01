@@ -1,7 +1,7 @@
 from flask import Flask, session, redirect, url_for, g
 import loginApp, indexApp, writeApp, followApp, clubApp, editApp, reviewApp, editPost
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['UPLOAD_FOLDER'] = 'uploads'

@@ -20,12 +20,16 @@ def write(app):
         print(request.files)
         if('file' in request.files):
             f = request.files['file']
-            if(allowed_file(f.filename)):
-               file = f.filename.split(".")[0]+str(time).replace(" ","_")+"."+f.filename.split(".")[1]
-               f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(file)))
+            file = f.filename.split(".")[0]+str(time).replace(" ","_")+"."+f.filename.split(".")[1]
+            file = file.replace(":","_")
+            print(file)
+            f.save("C:/Users/navjr/Documents/Projects/local-hack-day/static/"+file)
+            print(type(f))
         
         username = session['username']
         maxID = c.execute("SELECT MAX(id) FROM posts").fetchone()[0]
+        if maxID == None:
+            maxID=0
         c.execute('INSERT INTO posts(username,post,time,image,id) VALUES(?,?,?,?,?)',(username,post,time,file,maxID+1))
         conn.commit()
         return redirect(url_for('index'))
