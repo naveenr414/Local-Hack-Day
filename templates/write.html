@@ -1,0 +1,13 @@
+ {% block header %}
+  <h1>{% block title %}Write post{% endblock %}</h1>
+{% endblock %}
+
+<h2> {{ error }} </h2> 
+
+{% block content %}
+  <form method="post">
+    <label for="username">Post</label> <br>
+    <textarea name="post" id="post" required> </textarea>
+    <input type="submit" value="Write Post">
+  </form>
+{% endblock %}
