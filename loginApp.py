@@ -1,6 +1,7 @@
 from flask import Flask, session, redirect, url_for, render_template, request
 import hashlib
 import sqlite3
+from flask import g
 
 def login():
     
@@ -33,6 +34,8 @@ def login():
             # store the user id in a new session and return to the index
             session.clear()
             session['username'] = d['username']
+            g.username = d['username']
+            g.isClub = user[3] == "True"
             print([session['username']])
             return redirect(url_for('index'))
 
