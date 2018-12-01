@@ -3,3 +3,7 @@
 {% for follow in followers %}
 	{{ follow }} <br>
 {% endfor %}
+
+{% for review in reviews %}
+	{{ review["reviewer"] }}  claimed that {{ review["review"] }} at time {{review["time"] }} <br>
+{% endfor %}
