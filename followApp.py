@@ -7,12 +7,10 @@ def follow():
         c = conn.cursor()
         username = session['username']
         following = c.execute("SELECT * FROM following where user1=?",(username,)).fetchall()
-        following = [i[1] for i in following]
+        following = [i[1].replace(" ","") for i in following]
         
         newFollows = list(request.form.getlist('checkbox'))
-
-        print(newFollows)
-        print(following)
+        newFollows = [i.replace(" ","") for i in newFollows]
 
         for i in newFollows:
             if i not in following:
@@ -32,7 +30,7 @@ def follow():
         username = session['username']
         conn = sqlite3.connect("database.db")
         c = conn.cursor()
-        allUsers = c.execute('SELECT * FROM users').fetchall()
+        allUsers = c.execute('SELECT * FROM users where isclub="True"').fetchall()
         allUsers = [i[1] for i in allUsers]
         following = c.execute("SELECT * FROM following where user1=?",(username,)).fetchall()
         following = [i[1].replace(" ","") for i in following]
@@ -41,7 +39,6 @@ def follow():
         print("All users",allUsers)
         print("Username",username)
         
-        allUsers.remove(username)
         return render_template("follow.html",allUsers=allUsers,following=following)
     else:
         return "Need to login!"

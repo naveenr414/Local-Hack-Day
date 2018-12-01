@@ -33,6 +33,7 @@ def login():
             # store the user id in a new session and return to the index
             session.clear()
             session['username'] = d['username']
+            print([session['username']])
             return redirect(url_for('index'))
 
         return render_template("login.html",error=error)
