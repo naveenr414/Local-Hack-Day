@@ -23,7 +23,8 @@ def write(app):
             file = f.filename.split(".")[0]+str(time).replace(" ","_")+"."+f.filename.split(".")[1]
             file = file.replace(":","_")
             print(file)
-            f.save("C:/Users/navjr/Documents/Projects/local-hack-day/static/"+file)
+            filePath = os.path.dirname(os.path.abspath(__file__)).replace("\\","/")+url_for("static",filename="cronTab.png").replace("cronTab.png","")
+            f.save(filePath+file)
             print(type(f))
         
         username = session['username']

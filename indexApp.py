@@ -1,7 +1,9 @@
 from flask import Flask, session, render_template, redirect, url_for
 import sqlite3
+import os
 
 def index():
+    
     if('username' in session):
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
