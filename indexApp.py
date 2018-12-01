@@ -24,15 +24,10 @@ def index():
 
             allPosts.append(posts)
             print(posts,user)
-
-            #for post in posts:
-            #    ret+=str(user)+ " wrote "+str(post[1])
-            #    ret+="<br>"
         
         print(ret)
         print(allPosts)
         return render_template('blog/index.html', allPosts = allPosts)
-        # return "Main"
-        # return render_template('base.html')
+
     else:
-        return "Main"
+        return redirect(url_for('login'))
