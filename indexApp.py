@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template
+from flask import Flask, session, render_template, redirect, url_for
 import sqlite3
 
 def index():
@@ -19,7 +19,7 @@ def index():
 
         for i in following:
             user = i
-            posts = c.execute('SELECT * FROM posts WHERE user1 = ?',(user,)).fetchall()
+            posts = c.execute('SELECT * FROM posts WHERE username = ?',(user,)).fetchall()
             # posts = dict(posts)
 
             allPosts.append(posts)
@@ -27,7 +27,7 @@ def index():
         
         print(ret)
         print(allPosts)
-        return render_template('blog/index.html', allPosts = allPosts)
+        return render_template('blog/index.html', allPosts = allPosts,username=session['username'])
 
     else:
         return redirect(url_for('login'))
