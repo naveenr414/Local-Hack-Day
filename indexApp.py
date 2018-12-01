@@ -7,7 +7,6 @@ def index():
         c = conn.cursor()
 
         following = c.execute('SELECT * FROM following WHERE user1 = ?',(session['username'],)).fetchall()
-        following.append(session['username'])
 
         ret = ""
         ret+="My name is "+str(session['username'])+"<br>"

@@ -5,10 +5,10 @@
 <h2> {{ error }} </h2> 
 
 {% block content %}
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     <label for="username">Post</label> <br>
     <textarea name="post" id="post" required> </textarea>
-		<input type=file name="file">
+		<input type=file name=file>
     <input type="submit" value="Write Post">
   </form>
 {% endblock %}

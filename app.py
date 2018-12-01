@@ -21,7 +21,7 @@ def logout():
 
 @app.route('/write',methods=['GET', 'POST'])
 def write():
-    return writeApp.write()
+    return writeApp.write(app)
 
 @app.route('/follow',methods=['GET','POST'])
 def follow():
