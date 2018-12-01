@@ -1,7 +1,5 @@
 from flask import Flask, session, redirect, url_for
-import loginApp
-import indexApp
-import writeApp
+import loginApp, indexApp, writeApp, followApp
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
@@ -23,5 +21,9 @@ def logout():
 @app.route('/write',methods=['GET', 'POST'])
 def write():
     return writeApp.write()
+
+@app.route('/follow',methods=['GET','POST'])
+def follow():
+    return followApp.follow()
 
 app.run(host='127.0.5.1', port= 8081)
