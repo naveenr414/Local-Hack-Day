@@ -37,6 +37,4 @@ def login():
 
         return render_template("login.html",error=error)
 
-    print("HERE")
-
     return render_template('login.html',error="")
