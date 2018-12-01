@@ -4,6 +4,7 @@ import loginApp, indexApp, writeApp, followApp
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
+app.config['UPLOAD_FOLDER'] = 'uploads'
 
 @app.route('/')
 def index():
