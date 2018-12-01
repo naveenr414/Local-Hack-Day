@@ -19,20 +19,15 @@ def index():
 
         for i in following:
             user = i
-            posts = c.execute('SELECT * FROM posts WHERE username = ?',(user,)).fetchall()
+            posts = c.execute('SELECT * FROM posts WHERE user1 = ?',(user,)).fetchall()
             # posts = dict(posts)
 
             allPosts.append(posts)
             print(posts,user)
-
-            #for post in posts:
-            #    ret+=str(user)+ " wrote "+str(post[1])
-            #    ret+="<br>"
         
         print(ret)
         print(allPosts)
-        return render_template('blog/index.html', allPosts = allPosts,username=session['username'])
-        # return "Main"
-        # return render_template('base.html')
+        return render_template('blog/index.html', allPosts = allPosts)
+
     else:
-        return "Main"
+        return redirect(url_for('login'))
