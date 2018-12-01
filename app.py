@@ -1,5 +1,5 @@
 from flask import Flask, session, redirect, url_for
-import loginApp, indexApp, writeApp, followApp
+import loginApp, indexApp, writeApp, followApp, clubApp
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
@@ -26,5 +26,9 @@ def write():
 @app.route('/follow',methods=['GET','POST'])
 def follow():
     return followApp.follow()
+
+@app.route('/clubs/<clubname>')
+def club(clubname):
+    return clubApp.club(clubname)
 
 app.run(host='127.0.5.1', port= 8081)
