@@ -1,9 +1,30 @@
-{{ description }} <br>
+{% extends 'base.html' %}
 
-{% for follow in followers %}
-	{{ follow }} <br>
-{% endfor %}
+{% block header %}
+  <h1>{% block title %} {{ name }} {% endblock %}</h1>
+  <a class="action" href="{{ url_for('follow') }}">Follow</a>
+{% endblock %}
 
-{% for review in reviews %}
-	{{ review["reviewer"] }}  claimed that {{ review["review"] }} at time {{review["time"] }} <br>
-{% endfor %}
+{% block content %}
+
+	{{ description }} <br>
+
+
+	<h2> Members </h2>
+	{% for follow in followers %}
+		{{ follow }} <br>
+	{% endfor %}
+
+	<h2> Reviews </h2>
+	{% for review in reviews %}
+		<article class="post">
+			<div>
+				<h1>{{ review["review"] }}</h1> 
+				<div class="about"> by {{ review["reviewer"] }} on {{review["time"] }} </div> 
+			</div>
+		</article>
+	{% endfor %}
+
+{% endblock %}
+
+
