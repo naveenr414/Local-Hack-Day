@@ -17,6 +17,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
+    g.username=""
     return redirect(url_for('index'))
 
 @app.route('/write',methods=['GET', 'POST'])
