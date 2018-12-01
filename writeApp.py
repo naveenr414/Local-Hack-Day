@@ -30,6 +30,12 @@ def write(app):
         return redirect(url_for('index'))
 
     if('username' in session):
-        return render_template("blog/write.html")
+        conn = sqlite3.connect("database.db")
+        c = conn.cursor()
+        able = c.execute('SELECT * FROM users WHERE username=?',(session['username'],)).fetchone()[3]
+        if(able == "True"):
+            return render_template("blog/write.html")
+        else:
+            return redirect(url_for("index"))
     else:
-        return 'You must be logged in to write a post'
+        return redirect(url_for("index"))
