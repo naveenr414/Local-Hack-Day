@@ -7,7 +7,7 @@
 {% block content %}
   <form method="post" enctype="multipart/form-data">
     <label for="username">Post</label> <br>
-    <textarea name="post" id="post" required></textarea>
+    <textarea name="post" id="post" required>{{ post }}</textarea>
 		<input type=file name=file>
     <input type="submit" value="Write Post">
   </form>

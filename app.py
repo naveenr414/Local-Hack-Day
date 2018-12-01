@@ -1,5 +1,5 @@
 from flask import Flask, session, redirect, url_for
-import loginApp, indexApp, writeApp, followApp, clubApp, editApp, reviewApp
+import loginApp, indexApp, writeApp, followApp, clubApp, editApp, reviewApp, editPost
 
 app = Flask(__name__)
 app.secret_key = 'super secret key'
@@ -38,5 +38,13 @@ def editclub():
 @app.route('/clubs/<clubname>/review',methods=['GET','POST'])
 def review(clubname):
     return reviewApp.review(clubname)
+
+@app.route('/delete/<postnum>')
+def delete(postnum):
+    return editPost.delete(postnum)
+
+@app.route('/update/<postnum>', methods=['GET', 'POST'])
+def update(postnum):
+    return editPost.update(postnum)
 
 app.run(host='127.0.5.1', port= 8081)

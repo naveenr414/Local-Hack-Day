@@ -1,7 +1,7 @@
 <form method="post"> 
 	{% for user in allUsers %} 
 		{% if user in following %} 
-			<input checked="checked" type="checkbox" name= "checkbox" value = " {{ user }} "> 	{{ user }} <br>
+			<input checked="checked" type="checkbox" name= "checkbox" value = " {{ user }} "> {{ user }} <br>
 		{% else %}
 			<input type="checkbox" name= "checkbox" value = " {{ user }} "> 	{{ user }} <br>
 		{% endif %}

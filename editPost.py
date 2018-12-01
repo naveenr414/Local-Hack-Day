@@ -1,14 +1,15 @@
-from flask import Flask, session,request, render_template, redirect, url_for
+from flask import Flask, session, redirect, url_for, request, render_template
 import sqlite3
-from werkzeug.utils import secure_filename
-import os
 from datetime import datetime
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ['png','jpg','jpeg','gif']
+def delete(postnum):
+    conn = sqlite3.connect("database.db")
+    c = conn.cursor()
+    c.execute("DELETE FROM posts where id=?",(postnum, ))
+    conn.commit()
+    return redirect(url_for("index"))
 
-def write(app):
+def update(postnum):
     if(request.method == 'POST'):
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
@@ -25,8 +26,7 @@ def write(app):
                f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(file)))
         
         username = session['username']
-        maxID = c.execute("SELECT MAX(id) FROM posts").fetchone()[0]
-        c.execute('INSERT INTO posts(username,post,time,image,id) VALUES(?,?,?,?,?)',(username,post,time,file,maxID+1))
+        c.execute('UPDATE posts set post=?, time=?, image=?  WHERE id=?',(post,time,file,postnum))
         conn.commit()
         return redirect(url_for('index'))
 
@@ -35,7 +35,9 @@ def write(app):
         c = conn.cursor()
         able = c.execute('SELECT * FROM users WHERE username=?',(session['username'],)).fetchone()[3]
         if(able == "True"):
-            return render_template("blog/write.html")
+            currentPost = c.execute("SELECT * FROM posts where id=?", (postnum)).fetchone()[1]
+            print(currentPost)
+            return render_template("blog/update.html",post=currentPost)
         else:
             return redirect(url_for("index"))
     else:
