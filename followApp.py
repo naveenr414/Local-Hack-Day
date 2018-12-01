@@ -39,6 +39,6 @@ def follow():
         print("All users",allUsers)
         print("Username",username)
         
-        return render_template("follow.html",allUsers=allUsers,following=following)
+        return render_template("follow.html",allUsers=allUsers,following=following,username=session['username'])
     else:
         return "Need to login!"

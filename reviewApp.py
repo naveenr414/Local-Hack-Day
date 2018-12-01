@@ -20,7 +20,7 @@ def review(clubname):
         c = conn.cursor()
         able = c.execute('SELECT * FROM users WHERE username=?',(session['username'],)).fetchone()[3]
         if(able == "False"):
-            return render_template("blog/review.html")
+            return render_template("blog/review.html",username=session["username"])
         else:
             return redirect(url_for("index"))
     else:
