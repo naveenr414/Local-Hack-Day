@@ -1,6 +1,6 @@
 html {
-  font-family: sans-serif;
-  background: #eee;
+  font-family: Palatino Linotype;
+  background: #377ba8;
   padding: 1rem;
 }
 
@@ -11,7 +11,14 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: serif;
+  font-family: Verdana;
+  color: #377ba8;
+  margin: 1rem 0;
+}
+
+.Big {
+  font-family: Verdana;
+  font-size: 200px
   color: #377ba8;
   margin: 1rem 0;
 }
@@ -87,7 +94,7 @@ nav ul li a, nav ul li span, header .action {
 }
 
 .post > header h1 {
-  font-size: 1.5em;
+//  font-size: 1.5em;
   margin-bottom: 0;
 }
 

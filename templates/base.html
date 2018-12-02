@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 <nav>
-  <h1><a href="{{ url_for('index') }}">Billboard</a></h1>
+  <h1 class="Big"><a href="{{ url_for('index') }}">Billboard</a></h1>
   <ul>
   	{% if username != "" %}
       <li><span>{{ username }}</span></li> 
