@@ -21,8 +21,8 @@ def update(postnum):
         print(request.files)
         if('file' in request.files):
             f = request.files['file']
-           file = f.filename.split(".")[0]+str(time).replace(" ","_")+"."+f.filename.split(".")[1]
-           f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(file)))
+            file = f.filename.split(".")[0]+str(time).replace(" ","_")+"."+f.filename.split(".")[1]
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(file)))
         
         username = session['username']
         c.execute('UPDATE posts set post=?, time=?, image=?  WHERE id=?',(post,time,file,postnum))
